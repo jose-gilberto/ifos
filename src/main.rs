@@ -15,9 +15,15 @@ pub extern "C" fn _start() -> ! {
     // função com nome _start por padrão
     println!("Hello world{}", "!");
 
+    if_os::init(); // new
+
+    // invoke a breakpoint exception
+    x86_64::instructions::interrupts::int3();
+
     #[cfg(test)]
     test_main();
 
+    println!("works fine!");
     loop {}
 }
 
